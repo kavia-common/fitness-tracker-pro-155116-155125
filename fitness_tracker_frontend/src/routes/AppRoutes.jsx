@@ -11,6 +11,7 @@
  import ProtectedRoute from '../components/auth/ProtectedRoute';
  import Login from '../pages/Login';
  import Register from '../pages/Register';
+ import Dashboard from '../pages/Dashboard';
 
  /** Simple stub components for now; replace with actual pages later */
  const Page = ({ title, description }) => (
@@ -27,12 +28,12 @@
        <Route path="/login" element={<Login />} />
        <Route path="/register" element={<Register />} />
 
-       {/* Protected routes (stubbed) */}
+       {/* Protected routes */}
        <Route
          path="/dashboard"
          element={
            <ProtectedRoute>
-             <Page title="Dashboard" description="Overview of your workouts, goals, and progress." />
+             <Dashboard />
            </ProtectedRoute>
          }
        />
