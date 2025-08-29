@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 
 /**
  * PUBLIC_INTERFACE
@@ -9,6 +10,8 @@ import { Link } from 'react-router-dom';
  * - onToggleTheme: () => void handler to toggle theme
  */
 export default function Header({ theme = 'light', onToggleTheme = () => {} }) {
+  const { isAuthenticated, user, logout } = useAuth();
+
   return (
     <header
       style={{
@@ -53,12 +56,25 @@ export default function Header({ theme = 'light', onToggleTheme = () => {} }) {
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <Link to="/login" className="btn btn--secondary" style={{ textDecoration: 'none' }}>
-            Log in
-          </Link>
-          <Link to="/register" className="btn" style={{ textDecoration: 'none' }}>
-            Sign up
-          </Link>
+          {!isAuthenticated ? (
+            <>
+              <Link to="/login" className="btn btn--secondary" style={{ textDecoration: 'none' }}>
+                Log in
+              </Link>
+              <Link to="/register" className="btn" style={{ textDecoration: 'none' }}>
+                Sign up
+              </Link>
+            </>
+          ) : (
+            <>
+              <span className="badge" title={user?.email || ''}>
+                {user?.name ? `👋 ${user.name}` : 'Logged in'}
+              </span>
+              <button className="btn btn--secondary" type="button" onClick={logout}>
+                Log out
+              </button>
+            </>
+          )}
           <button
             type="button"
             className="btn"
