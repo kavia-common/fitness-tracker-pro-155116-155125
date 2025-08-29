@@ -1,0 +1,169 @@
+@import './variables.css';
+
+/* CSS Reset (modern minimal) */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--text-md);
+  line-height: 1.6;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+a:hover,
+a:focus-visible {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+/* Focus styles for accessibility */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Layout helpers */
+.container {
+  width: min(1120px, 92vw);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+
+.section {
+  padding-block: clamp(var(--space-6), 4vw, var(--space-12));
+}
+
+.card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-6);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+  margin: 0 0 var(--space-3) 0;
+  line-height: 1.25;
+}
+
+h1 { font-size: clamp(1.75rem, 2.5vw, var(--text-3xl)); }
+h2 { font-size: clamp(1.5rem, 2vw, var(--text-2xl)); }
+h3 { font-size: clamp(1.25rem, 1.5vw, var(--text-xl)); }
+
+p {
+  margin: 0 0 var(--space-4) 0;
+  color: var(--text-secondary);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  background: var(--button-bg);
+  color: var(--button-text);
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.12s ease, box-shadow 0.2s ease, filter 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+  filter: brightness(0.98);
+}
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn--secondary {
+  background: var(--color-secondary);
+  color: #ffffff;
+}
+.btn--accent {
+  background: var(--color-accent);
+  color: #1a1a1a;
+}
+
+/* Chips/Badges */
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-lg);
+  background: color-mix(in oklab, var(--color-primary) 10%, transparent);
+  color: var(--color-primary);
+  border: 1px solid color-mix(in oklab, var(--color-primary) 30%, transparent);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+/* Utility classes */
+.text-muted { color: var(--text-muted); }
+.hidden { display: none !important; }
+.center { display: grid; place-items: center; }
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .container {
+    width: min(1080px, 94vw);
+    padding-inline: var(--space-3);
+  }
+  .card {
+    padding: var(--space-5);
+  }
+}
+
+/* Theming example hooks for components */
+.theme-primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+.theme-secondary {
+  background: var(--color-secondary);
+  color: #fff;
+}
+.theme-accent {
+  background: var(--color-accent);
+  color: #1a1a1a;
+}
